@@ -33,6 +33,13 @@ class SubscriptionController extends Controller
         }
         return redirect()->back();
 
+    }
 
+    public function cancel($id)
+    {
+        $user = User::find(id);
+        $user->subscription()->cancel();
+        return redirect()->route('subscription.getindex')
+            ->with(['message' => 'Sorry to here that.']);
     }
 }

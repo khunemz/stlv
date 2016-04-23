@@ -14,4 +14,9 @@ Route::group(['middleware' => ['web']], function () {
         'as' => 'subscription.postJoin',
         'middleware' => 'notSubscribed'
     ]);
+    Route::get('cancel', [
+        'uses' => 'SubscriptionController@cancel',
+        'as' => 'subscription.cancel'
+    ]);
+
 });
