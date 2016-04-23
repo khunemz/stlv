@@ -12,7 +12,15 @@
             integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="
             crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
+    <style>
+        body{
+            padding-left: 30px;
+            padding-top: 50px;
+        }
+        #stripe {
+            max-width: 400px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
