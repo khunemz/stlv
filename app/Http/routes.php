@@ -16,7 +16,18 @@ Route::group(['middleware' => ['web']], function () {
     ]);
     Route::get('cancel', [
         'uses' => 'SubscriptionController@cancel',
-        'as' => 'subscription.cancel'
+        'as' => 'subscription.cancel',
+        'middleware' => 'notSubscribed'
+    ]);
+    Route::get('resume', [
+        'uses' => 'SubscriptionController@resume',
+        'as' => 'subscription.resume',
+        'middleware' => 'notSubscribed'
+    ]);
+    Route::get('card', [
+        'uses' => 'Subscription@card',
+        'as' => 'subscription.card',
+        'middleware' => 'notSubscribed'
     ]);
 
 });

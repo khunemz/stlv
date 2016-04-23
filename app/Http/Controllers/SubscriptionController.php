@@ -37,9 +37,20 @@ class SubscriptionController extends Controller
 
     public function cancel($id)
     {
-        $user = User::find(id);
+        $user = User::find($id);
         $user->subscription()->cancel();
         return redirect()->route('subscription.getindex')
             ->with(['message' => 'Sorry to here that.']);
+    }
+
+    public function resume($id){
+        $user = User::finde($id);
+        $user->subscription($user->subscription->plan)->resume();
+        return redirect()->route('subscription.getjoin');
+    }
+
+    public function card()
+    {
+        return view('subscriptions.card');
     }
 }
