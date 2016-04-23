@@ -6,17 +6,11 @@ use Closure;
 
 class notSubscribed
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
     public function handle($request, Closure $next)
     {
-        if (\Auth::check() && ! \Auth::user()->subscribed()){
-            return redirect()->to('sub');
+        if (\Auth::check() && ! \Auth::user()->subscribed())
+        {
+            return redirect('/');
         }
         return $next($request);
     }

@@ -3,7 +3,7 @@
 Route::group(['middleware' => ['web']], function () {
     Route::get('/', [
         'uses' => 'SubscriptionController@getIndex',
-        'as' => 'subscription'
+        'as' => 'subscription.getindex'
     ]);
 });
 

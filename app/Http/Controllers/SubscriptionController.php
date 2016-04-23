@@ -20,7 +20,7 @@ class SubscriptionController extends Controller
 
     public function getJoin()
     {
-        return 'get join';
+        return view('subscriptions.join');
     }
 
     public function postJoin()

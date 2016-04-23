@@ -5,7 +5,7 @@
     @if(Auth::check() && !$user->subscribed())
         <p>You are subscribed!! Thanks!!</p>
     @else
-        <p>You are not subscribed!! {{ link_to('#', 'Join now') }} </p>
+        <p>You are not subscribed!! {{ link_to('/join', 'Join now') }} </p>
     @endif
 
 @endsection
