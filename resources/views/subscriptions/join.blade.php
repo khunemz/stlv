@@ -3,12 +3,13 @@
     <h3>Subscriptoin now</h3>
     <form action="{{ URL::route('subscription.postJoin') }}"
           method="post" id="stripe" name="stripe" class="form-group">
-        <span class="payment-errors"></span>
+        <span class="payment-errors alert alert-danger"></span>
+        <br />
         <label for="plan">Plan : </label>
         <div class="form-group">
             <select name="plan" id="plan">
-                <option value="monthly">Monthly Plan (9 USD per month)</option>
-                <option value="yearly">Yearly Plan (84 USD per year)</option>
+                <option value="monthly">Monthly Plan (200 THB per month)</option>
+                <option value="yearly">Yearly Plan (1,500 THB per year)</option>
             </select>
         </div>
 
@@ -39,10 +40,45 @@
         {!! Form::submit('Subscribe now!!', [
             'class' => 'btn btn-default'
         ]) !!}
-        {!! Form::token() !!}
 
+        {!! Form::token() !!}
     </form>
 
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script>
+        $(document).ready(function(){
+            Stripe.setPublishableKey('pk_test_dM2a4RjmA7LdXB4txSJHqQyq');
 
+            $(function(){
+                var $form = $('#stripe');
+                $form.submit(function(event){
+                    //Disable submit button to prevent
+                    //repeated clicks:
+                    $form.find('btn').prop('disabled', true);
+                    //Request a token from stripe:
+                    Stripe.card.createToken($form, stripeResponseHandler);
+                    //Prevent the form from being submitted
+                    return false;
+                });
+
+                function stripeResponseHandler(status , response) {
+                    var $form = $('#stripe');
+                    if (response.error) {
+                        $form.find('.payment-errors').text(response.error.message);
+                        $form.find('.btn').prop('disabled', false);
+                    } else {
+                        // Get the token ID:
+                        var token = response.id;
+                        // Insert the token ID into the form so it gets submitted to the server
+                        $form.append($('<input type="hidden" name="stripeToken">').val(token));
+                        //Submit the form :
+                        $form.get(0).submit();
+                    }
+
+                }
+            });
+
+
+        });
+    </script>
 @endsection

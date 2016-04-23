@@ -23,8 +23,16 @@ class SubscriptionController extends Controller
         return view('subscriptions.join');
     }
 
-    public function postJoin()
+    public function postJoin(Request $request)
     {
-        return 'post join';
+        $token = $request->stripeToken;
+        $plan = $request->plan;
+        if($this->user->newSubscription('main', $plan)
+            ->trialDay(10)->create($token)):
+            return redirect()->route('subscription.getindex')
+                ->with(['message' => 'Thank you for subscription!!']);
+        endif;
+
+
     }
 }
