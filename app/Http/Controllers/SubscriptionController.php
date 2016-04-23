@@ -17,4 +17,14 @@ class SubscriptionController extends Controller
     {
         return view('subscriptions.index')->with('user', $this->user);
     }
+
+    public function getJoin()
+    {
+        return 'get join';
+    }
+
+    public function postJoin()
+    {
+        return 'post join';
+    }
 }

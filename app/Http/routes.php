@@ -7,6 +7,13 @@ Route::group(['middleware' => ['web']], function () {
     ]);
 });
 
-//Route::group(['middleware' => ['web' , 'notSubscribed']], function(){
-//
-//});
+Route::group(['middleware' => ['web' , 'notSubscribed']], function(){
+    Route::get('/join', [
+        'uses' => 'SubscriptionController@getJoin',
+        'as' => 'subscription.getJoin'
+    ]);
+    Route::post('/join', [
+        'uses' => 'SubscriptionController@postJoin',
+        'as' => 'subscription.postJoin'
+    ]);
+});
