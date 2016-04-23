@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
 class SubscriptionController extends Controller
 {
-    protected $user;
-    public function __contruct()
-    {
-        $this->user = \Auth::user();
-    }
     public function getIndex()
     {
-        return view('subscriptions.index')->with('user', $this->user);
+        return view('subscriptions.index')->with('user', User::find(1));
     }
 
     public function getJoin()
@@ -25,13 +21,17 @@ class SubscriptionController extends Controller
 
     public function postJoin(Request $request)
     {
+        $user = User::find(1);
         $token = $request->stripeToken;
         $plan = $request->plan;
-        if($this->user->newSubscription('main', $plan)
-            ->trialDay(10)->create($token)):
+
+        if($user->newSubscription('primary', $plan)
+            ->trialDays(10)->create($token))
+        {
             return redirect()->route('subscription.getindex')
                 ->with(['message' => 'Thank you for subscription!!']);
-        endif;
+        }
+        return redirect()->back();
 
 
     }

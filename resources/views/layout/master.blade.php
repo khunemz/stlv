@@ -24,6 +24,7 @@
 </head>
 <body>
     <div class="container">
+        @include('partial._message')
         @yield('content')
     </div>
 </body>

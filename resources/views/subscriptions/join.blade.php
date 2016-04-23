@@ -3,7 +3,7 @@
     <h3>Subscriptoin now</h3>
     <form action="{{ URL::route('subscription.postJoin') }}"
           method="post" id="stripe" name="stripe" class="form-group">
-        <span class="payment-errors alert alert-danger"></span>
+        <span class="payment-errors"></span>
         <br />
         <label for="plan">Plan : </label>
         <div class="form-group">
