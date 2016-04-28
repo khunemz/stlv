@@ -25,7 +25,7 @@ Route::group(['middleware' => ['web']], function () {
         'middleware' => 'notSubscribed'
     ]);
     Route::get('card', [
-        'uses' => 'Subscription@card',
+        'uses' => 'SubscriptionController@card',
         'as' => 'subscription.card',
         'middleware' => 'notSubscribed'
     ]);

@@ -17,7 +17,7 @@
             padding-left: 30px;
             padding-top: 50px;
         }
-        #stripe {
+        #stripe, #card {
             max-width: 400px;
         }
     </style>
